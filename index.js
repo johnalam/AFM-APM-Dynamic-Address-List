@@ -18,7 +18,7 @@ ilx.listen();
   * @return {Boolean} result
   */
 ilx.addMethod('addAddress', function(req, res) {
-	afm.addAddress(req.params()[0], function(result) {
+	afm.addAddress(req.params()[0], req.params()[1] , function(result) {
 		if(typeof result !== undefined) {
 			res.reply(true);
 		} else {
@@ -34,7 +34,7 @@ ilx.addMethod('addAddress', function(req, res) {
   * @ return {Boolean} result
   */
 ilx.addMethod('deleteAddress', function(req, res) {
-	afm.deleteAddress(req.params()[0], function(result) {
+	afm.deleteAddress(req.params()[0], req.params()[1] , function(result) {
 		if(typeof result !== undefined) {
 			res.reply(true);
 		} else {
