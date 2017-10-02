@@ -12,10 +12,12 @@ var afmAddressListUrl = "https://"+server+"/mgmt/tm/security/firewall/address-li
 
 /**
   * get address list
-  *
+  * @param {String} list
   * @return {Object} data
   */
-exports.getAddressList = function(callback) {
+exports.getAddressList = function(list, callback) {
+	var addressList = "~Common~" + list;
+	var afmAddressListUrl = "https://"+server+"/mgmt/tm/security/firewall/address-list/"+addressList;
 	api.get(afmAddressListUrl, "", function(res) {
 	//f5.get(function(callback) {
 		callback(res.addresses);
@@ -26,9 +28,12 @@ exports.getAddressList = function(callback) {
   * add address to address list
   *
   * @param {String} address
+  * @param {String} list
   * @return {Object} data
   */
-exports.addAddress = function(address, callback) {
+exports.addAddress = function(address, list, callback) {
+	var addressList = "~Common~" + list;
+	var afmAddressListUrl = "https://"+server+"/mgmt/tm/security/firewall/address-list/"+addressList;
 	api.put(afmAddressListUrl, "", address, function(res) {
 		callback(res.addresses);
 	});
@@ -38,10 +43,14 @@ exports.addAddress = function(address, callback) {
   * delete address from address list
   *
   * @param {String} address
+  * @param {String} list
   * @return {Object} data
   */
-exports.deleteAddress = function(address, callback) {
+exports.deleteAddress = function(address, list, callback) {
+	var addressList = "~Common~" + list;
+	var afmAddressListUrl = "https://"+server+"/mgmt/tm/security/firewall/address-list/"+addressList;
 	api.delete(afmAddressListUrl, "", address, function(res) {
 		callback(res.addresses);
 	});
 };
+
